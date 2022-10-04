@@ -1,7 +1,6 @@
 import React, {useCallback, useState} from 'react';
 import {Pressable, ScrollView, Text, View} from 'react-native';
 import myStyle from './style';
-
 import CloseSVG from '../../assets/svg/CloseSVG';
 import {RadioButton} from 'react-native-paper';
 import Size from '../Size';
@@ -16,7 +15,6 @@ function MyModal(props) {
   const {data, minPrice, maxPrice} = useSelector(state => state.app);
   const [checked, setChecked] = useState('unchecked');
   const [checkedPop, setCheckedPop] = useState(false);
-
   const sizes = ['35', '36', '37', '38', '39', '40', '41', '42', '43', '44'];
   const colors = ['#FF5A5A', '#FFFFFF', '#2878D5', '#000000'];
 
@@ -42,7 +40,6 @@ function MyModal(props) {
     if (type === 'second') {
       sorted = [...arr].sort((a, b) => b.price - a.price);
     }
-
     return sorted;
   };
 
@@ -50,15 +47,7 @@ function MyModal(props) {
     const arr = data.filter(
       item => item.price >= minPrice && item.price <= maxPrice,
     );
-
-    if (checked === 'first') {
-      sortFunc(arr, 'first');
-    }
-    if (checked === 'second') {
-      sortFunc(arr, 'second');
-    }
-
-    dispatch(applyData(arr));
+    dispatch(applyData(sortFunc(arr, checked)));
     handleClose();
   };
 
@@ -87,8 +76,7 @@ function MyModal(props) {
                   uncheckedColor={'black'}
                   color={'black'}
                   status={checkedPop ? 'checked' : 'unchecked'}
-                  onPress={() => setCheckedPop(!checkedPop)}
-                />
+                  onPress={() => setCheckedPop(!checkedPop)}/>
                 <Text style={myStyle.priceText}>Popularity</Text>
               </Pressable>
 

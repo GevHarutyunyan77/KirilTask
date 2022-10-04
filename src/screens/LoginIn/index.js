@@ -8,7 +8,7 @@ import TwitterSVG from '../../assets/svg/TwitterSVG';
 import GmailSVG from '../../assets/svg/GmailSVG';
 import AppleSVG from '../../assets/svg/AppleSVG';
 
-function Index() {
+function Login({navigation}) {
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <View style={myStyle.container}>
@@ -39,7 +39,7 @@ function Index() {
         </View>
 
         <Text style={myStyle.forgotText}>FORGOT PASSWORD?</Text>
-        <Pressable style={myStyle.signInButton}>
+        <Pressable style={myStyle.signInButton} onPress={()=>navigation.navigate('tabScreens')}>
           <Text style={myStyle.signInText}>SIGN IN</Text>
         </Pressable>
 
@@ -69,4 +69,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Login;

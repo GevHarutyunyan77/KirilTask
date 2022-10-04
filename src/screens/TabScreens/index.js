@@ -47,7 +47,7 @@ function TabScreens() {
         <ShopSVG />
       </View>
 
-      <NavigationContainer>
+
         <Tab.Navigator screenOptions={screenOptionStyle}>
           <Tab.Screen
             name="Home"
@@ -82,7 +82,7 @@ function TabScreens() {
             }}
           />
         </Tab.Navigator>
-      </NavigationContainer>
+
 
       {showModal && <MyModal />}
     </View>
