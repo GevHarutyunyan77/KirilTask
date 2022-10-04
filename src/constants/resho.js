@@ -1,8 +1,7 @@
-import { Dimensions } from "react-native";
+import {Dimensions} from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;
 
-const resho = windowWidth / 375
+const resho = windowWidth / 375;
 
-export default resho
-
+export default resho;

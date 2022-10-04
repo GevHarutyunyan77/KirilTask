@@ -1,10 +1,8 @@
-import React from "react";
-import { View } from "react-native";
+import React from 'react';
+import {View} from 'react-native';
 
 function Favorite(props) {
-  return (
-    <View style={{flex:1, backgroundColor:'grey'}}></View>
-  );
+  return <View style={{flex: 1, backgroundColor: 'grey'}} />;
 }
 
 export default Favorite;

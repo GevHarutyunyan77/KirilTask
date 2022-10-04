@@ -1,10 +1,8 @@
-import React from "react";
-import { View } from "react-native";
+import React from 'react';
+import {View} from 'react-native';
 
-function User(props) {
-  return (
-    <View style={{flex:1, backgroundColor:'purple'}}></View>
-  );
+function User() {
+  return <View style={{flex: 1, backgroundColor: 'purple'}} />;
 }
 
 export default User;

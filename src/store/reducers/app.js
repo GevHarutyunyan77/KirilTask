@@ -1,23 +1,33 @@
 import {
   SET_DATA_REQUEST,
   SET_DATA_SUCCESS,
-  SET_DATA_FAIL, SET_SHOW_MODAL, REFRESH_DATA_SUCCESS, APPLY_DATA,
-} from "../actions/app";
+  SET_DATA_FAIL,
+  SET_SHOW_MODAL,
+  REFRESH_DATA_SUCCESS,
+  APPLY_DATA,
+  SET_LOAD_MORE,
+  SET_MAX_PRICE,
+  SET_MIN_PRICE,
+  CLEAR_FILTER,
+  SET_MIN_MAX_PRICE,
+} from '../actions/app';
 
 const initialState = {
-  status:'',
+  status: '',
   paginationOffset: 0,
   show: false,
-  data:[]
-}
+  loadMore: true,
+  data: [],
+  minPrice: 0,
+  maxPrice: 1500,
+};
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
-
     case SET_DATA_REQUEST: {
       return {
         ...state,
-        status: "pending",
+        status: 'pending',
       };
     }
 
@@ -25,8 +35,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         data: [...state.data, ...action.payload.data],
-        status: "ok",
-        paginationOffset: action.payload.paginationOffset
+        status: 'ok',
+        paginationOffset: action.payload.paginationOffset,
       };
     }
 
@@ -34,21 +44,25 @@ export default function(state = initialState, action) {
       return {
         ...state,
         data: action.payload,
-        status: "ok",
-        paginationOffset: 0
+        status: 'ok',
+        paginationOffset: 0,
+        loadMore: true,
       };
     }
+
     case APPLY_DATA: {
       return {
         ...state,
-        data: action.payload,
-        status: "ok",
+        data: [...action.payload],
+        loadMore: false,
+        status: 'ok',
       };
     }
+
     case SET_DATA_FAIL: {
       return {
         ...state,
-        status: "fail",
+        status: 'fail',
       };
     }
 
@@ -58,8 +72,27 @@ export default function(state = initialState, action) {
         showModal: action.payload,
       };
     }
-      default: {
-      return state
+
+    case CLEAR_FILTER: {
+      return {
+        ...state,
+        loadMore: action.payload,
+        showModal: false,
+        minPrice: 0,
+        maxPrice: 1500,
+      };
+    }
+
+    case SET_MIN_MAX_PRICE: {
+      return {
+        ...state,
+        minPrice: action.payload.minPrice,
+        maxPrice: action.payload.maxPrice,
+      };
+    }
+
+    default: {
+      return state;
     }
   }
 }
